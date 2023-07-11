@@ -104,8 +104,14 @@ Token *tokenize() {
 		}
 
 		if(*p == '+' || *p == '-' || *p == '*' || *p == '/' ||
-				*p == '(' || *p == ')') {
+				*p == '(' || *p == ')' || *p == '<' || *p == '>') {
 			cur = new_token(TK_RESERVED, cur, p++, 1);
+			continue;
+		}
+
+		if(strncmp(p, "<=", 2) == 0 ||
+				strncmp(p, ">=", 2) == 0) {
+			cur = new_token(TK_RESERVED, cur, p+=2, 2);
 			continue;
 		}
 
@@ -263,8 +269,8 @@ void gen(Node *node) {
 			printf("	setl al\n");
 			printf("	movzb rax, al\n");
 			break;
-	printf("	push rax\n");
 	}
+	printf("	push rax\n");
 }
 
 int main(int argc, char **argv) {
