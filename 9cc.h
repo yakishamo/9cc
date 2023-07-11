@@ -16,6 +16,7 @@ struct Token {
 	Token *next;    //次の入力トークン
 	int val;        //kindがTK_NUMの場合、その数値
 	char *str;      //トークン文字列
+	int len;        //トークンの長さ
 };
 
 //抽象構文木のノードの種類
@@ -25,6 +26,12 @@ typedef enum {
 	ND_MUL, // *
 	ND_DIV, // /
 	ND_NUM, // 整数
+	ND_EQU, // =
+	ND_NEQ, // !=
+	ND_LNE, // <
+	ND_LE,  // <=
+	ND_GNE, // >
+	ND_GE,  // >=
 } NodeKind;
 
 typedef struct Node Node;
