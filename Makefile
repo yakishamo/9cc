@@ -1,6 +1,14 @@
+TARGET=9cc
+
 CFLAGS=-std=c11 -g -static
 
-9cc: 9cc.c
+OBJS=main.o codegen.o parse.o token.o error.o
+
+$(TARGET): $(OBJS)
+	gcc $(CFLAGS) -o $@ $+
+
+%.o: %.c
+	gcc $(CFLAGS) -c -o $@ $<
 
 test: 9cc
 	./test.sh
