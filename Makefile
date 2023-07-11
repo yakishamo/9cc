@@ -2,18 +2,18 @@ TARGET=9cc
 
 CFLAGS=-std=c11 -g -static
 
-OBJS=main.o codegen.o parse.o token.o error.o
+OBJS = src/main.o src/codegen.o src/parse.o src/token.o src/error.o
 
 $(TARGET): $(OBJS)
 	gcc $(CFLAGS) -o $@ $+
 
-%.o: %.c
+%.o: src/%.c
 	gcc $(CFLAGS) -c -o $@ $<
 
 test: 9cc
 	./test.sh
 
 clean:
-	rm -f 9cc *.o *~ tmp*
+	rm -f 9cc ./src/*.o *~ tmp*
 
 .PHONY: test clean
