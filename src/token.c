@@ -48,7 +48,12 @@ Token *tokenize() {
 			cur = new_token(TK_NUM, cur, p, 0);
 			cur->val = strtol(p,&p,10);
 			continue;
-		} 
+		}
+
+		if('a' <= *p && *p <= 'z') {
+			cur = new_token(TK_IDENT, cur, p++, 1);
+			continue;
+		}
 		
 		error("invalid token");
 	}
